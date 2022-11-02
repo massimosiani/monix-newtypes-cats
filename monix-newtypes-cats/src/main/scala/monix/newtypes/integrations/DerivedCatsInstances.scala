@@ -16,10 +16,10 @@
 
 package monix.newtypes.integrations
 
-import cats.{Eq, Hash, Show}
+import cats.{Eq, Hash, Order, Show}
 import monix.newtypes.HasExtractor
 
-trait DerivedCatsInstances extends DerivedCatsEq with DerivedCatsHash with DerivedCatsShow
+trait DerivedCatsInstances extends DerivedCatsEq with DerivedCatsHash with DerivedCatsOrder with DerivedCatsShow
 
 trait DerivedCatsEq {
   implicit def catsEq[T, S](implicit extractor: HasExtractor.Aux[T, S], eqs: Eq[S]): Eq[T] = new Eq[T] {
@@ -28,9 +28,15 @@ trait DerivedCatsEq {
 }
 
 trait DerivedCatsHash { self: DerivedCatsEq =>
-  implicit def catsHash[T, S](implicit extractor: HasExtractor.Aux[T, S], hashS: Hash[S]): Hash[T] = new Hash[T] {
+  def catsHash[T, S](implicit extractor: HasExtractor.Aux[T, S], hashS: Hash[S]): Hash[T] = new Hash[T] {
     override def eqv(x: T, y: T): Boolean = self.catsEq.eqv(x, y)
     override def hash(x: T): Int          = hashS.hash(extractor.extract(x))
+  }
+}
+
+trait DerivedCatsOrder {
+  implicit def catsOrder[T, S](implicit extractor: HasExtractor.Aux[T, S], orderS: Order[S]): Order[T] = new Order[T] {
+    override def compare(x: T, y: T): Int = orderS.compare(extractor.extract(x), extractor.extract(y))
   }
 }
 

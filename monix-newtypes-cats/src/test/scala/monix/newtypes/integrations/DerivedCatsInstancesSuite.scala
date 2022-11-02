@@ -17,7 +17,7 @@
 package monix.newtypes.integrations
 
 import cats.syntax.all.*
-import cats.{Eq, Hash, Show}
+import cats.{Eq, Hash, Order, Show}
 import monix.newtypes.NewtypeWrapped
 import monix.newtypes.integrations.DerivedCatsInstancesSuite.*
 import org.scalacheck.Prop.*
@@ -34,11 +34,11 @@ class DerivedCatsInstancesSuite extends munit.ScalaCheckSuite {
   }
 
   test("an instance of Hash exists") {
-    implicitly[Hash[SomeNewtype]]
+    assert(SomeNewtype.catsHash[SomeNewtype, Internal].isInstanceOf[Hash[_]])
   }
   property("the Hash instances produce the same result") {
     forAll { (x: Internal) =>
-      x.hash === SomeNewtype(x).hash
+      x.hash === SomeNewtype.catsHash[SomeNewtype, Internal].hash(SomeNewtype(x))
     }
   }
 
@@ -48,6 +48,15 @@ class DerivedCatsInstancesSuite extends munit.ScalaCheckSuite {
   property("the Show instances produce the same result") {
     forAll { (x: Internal) =>
       x.show === SomeNewtype(x).show
+    }
+  }
+
+  test("an instance of Order exists") {
+    implicitly[Order[SomeNewtype]]
+  }
+  property("the Order instances produce the same result") {
+    forAll { (x: Internal, y: Internal) =>
+      x.compare(y) === SomeNewtype(x).compare(SomeNewtype(y))
     }
   }
 }
