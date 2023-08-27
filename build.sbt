@@ -17,7 +17,8 @@ ThisBuild / tlSonatypeUseLegacyHost := false
 ThisBuild / tlSitePublishBranch := Some("main")
 
 val Scala213 = "2.13.10"
-ThisBuild / crossScalaVersions := Seq(Scala213, "3.2.0")
+val Scala3   = "3.3.0"
+ThisBuild / crossScalaVersions := Seq(Scala213, Scala3)
 ThisBuild / scalaVersion       := Scala213 // the default Scala
 
 lazy val root = tlCrossRootProject.aggregate(`monix-newtypes-cats`)
@@ -29,7 +30,7 @@ lazy val `monix-newtypes-cats` = crossProject(JVMPlatform, JSPlatform)
     name := "monix-newtypes-cats",
     libraryDependencies ++= Seq(
       "io.monix"       %%% "newtypes-core"    % "0.2.3",
-      "org.typelevel"  %%% "cats-core"        % "2.9.0",
+      "org.typelevel"  %%% "cats-core"        % "2.10.0",
       "org.scalacheck" %%% "scalacheck"       % "1.17.0" % Test,
       "org.scalameta"  %%% "munit"            % "0.7.29" % Test,
       "org.scalameta"  %%% "munit-scalacheck" % "0.7.29" % Test,
