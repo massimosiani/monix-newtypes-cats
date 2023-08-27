@@ -31,7 +31,8 @@ lazy val `monix-newtypes-cats` = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Pure)
   .in(file("monix-newtypes-cats"))
   .settings(
-    name := "monix-newtypes-cats",
+    name        := "monix-newtypes-cats",
+    description := "Cats instances derivation for Monix Newtypes",
     libraryDependencies ++= Seq(
       "io.monix"       %%% "newtypes-core"    % "0.2.3",
       "org.typelevel"  %%% "cats-core"        % "2.10.0",
