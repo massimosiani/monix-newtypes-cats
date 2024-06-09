@@ -1,6 +1,6 @@
 import laika.ast.Path.Root
 import laika.ast.Styles
-import laika.helium.config.{HeliumIcon, IconLink, ThemeNavigationSection, TextLink}
+import laika.helium.config.{HeliumIcon, IconLink, TextLink, ThemeNavigationSection}
 
 // https://typelevel.org/sbt-typelevel/faq.html#what-is-a-base-version-anyway
 ThisBuild / tlBaseVersion := "0.0" // your current series x.y
@@ -20,8 +20,8 @@ ThisBuild / tlSonatypeUseLegacyHost := false
 // publish website from this branch
 ThisBuild / tlSitePublishBranch := Some("main")
 
-val Scala213 = "2.13.12"
-val Scala3   = "3.3.0"
+val Scala213 = "2.13.14"
+val Scala3   = "3.3.3"
 ThisBuild / crossScalaVersions := Seq(Scala213, Scala3)
 ThisBuild / scalaVersion       := Scala213 // the default Scala
 
@@ -36,9 +36,9 @@ lazy val `monix-newtypes-cats` = crossProject(JVMPlatform, JSPlatform)
     libraryDependencies ++= Seq(
       "io.monix"       %%% "newtypes-core"    % "0.2.3",
       "org.typelevel"  %%% "cats-core"        % "2.12.0",
-      "org.scalacheck" %%% "scalacheck"       % "1.18.0"    % Test,
-      "org.scalameta"  %%% "munit"            % "1.0.0" % Test,
-      "org.scalameta"  %%% "munit-scalacheck" % "1.0.0" % Test,
+      "org.scalacheck" %%% "scalacheck"       % "1.18.0" % Test,
+      "org.scalameta"  %%% "munit"            % "1.0.0"  % Test,
+      "org.scalameta"  %%% "munit-scalacheck" % "1.0.0"  % Test,
     ),
   )
 

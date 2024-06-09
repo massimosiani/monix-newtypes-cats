@@ -34,7 +34,7 @@ class DerivedCatsInstancesSuite extends munit.ScalaCheckSuite {
   }
 
   test("an instance of Hash exists") {
-    assert(SomeNewtype.catsHash[SomeNewtype, Internal].isInstanceOf[Hash[_]])
+    assert(SomeNewtype.catsHash[SomeNewtype, Internal].isInstanceOf[Hash[?]])
   }
   property("the Hash instances produce the same result") {
     forAll { (x: Internal) =>
