@@ -34,10 +34,10 @@ lazy val `monix-newtypes-cats` = crossProject(JVMPlatform, JSPlatform)
     name        := "monix-newtypes-cats",
     description := "Cats instances derivation for Monix Newtypes",
     libraryDependencies ++= Seq(
-      "io.monix"       %%% "newtypes-core"    % "0.2.3",
+      "io.monix"       %%% "newtypes-core"    % "0.3.0",
       "org.typelevel"  %%% "cats-core"        % "2.12.0",
       "org.scalacheck" %%% "scalacheck"       % "1.18.0" % Test,
-      "org.scalameta"  %%% "munit"            % "1.0.0"  % Test,
+      "org.scalameta"  %%% "munit"            % "1.0.1"  % Test,
       "org.scalameta"  %%% "munit-scalacheck" % "1.0.0"  % Test,
     ),
   )
