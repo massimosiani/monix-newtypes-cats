@@ -14,13 +14,10 @@ ThisBuild / developers       := List(
   tlGitHubDev("massimosiani", "Massimo Siani")
 )
 
-// publish to s01.oss.sonatype.org (set to true to publish to oss.sonatype.org instead)
-ThisBuild / tlSonatypeUseLegacyHost := false
-
 // publish website from this branch
 ThisBuild / tlSitePublishBranch := Some("main")
 
-val Scala213 = "2.13.14"
+val Scala213 = "2.13.18"
 val Scala3   = "3.3.3"
 ThisBuild / crossScalaVersions := Seq(Scala213, Scala3)
 ThisBuild / scalaVersion       := Scala213 // the default Scala
@@ -34,11 +31,11 @@ lazy val `monix-newtypes-cats` = crossProject(JVMPlatform, JSPlatform)
     name        := "monix-newtypes-cats",
     description := "Cats instances derivation for Monix Newtypes",
     libraryDependencies ++= Seq(
-      "io.monix"       %%% "newtypes-core"    % "0.3.0",
-      "org.typelevel"  %%% "cats-core"        % "2.12.0",
-      "org.scalacheck" %%% "scalacheck"       % "1.18.0" % Test,
-      "org.scalameta"  %%% "munit"            % "1.0.1"  % Test,
-      "org.scalameta"  %%% "munit-scalacheck" % "1.0.0"  % Test,
+      "io.monix"       %%% "newtypes-core"    % "0.4.1",
+      "org.typelevel"  %%% "cats-core"        % "2.13.0",
+      "org.scalacheck" %%% "scalacheck"       % "1.19.0" % Test,
+      "org.scalameta"  %%% "munit"            % "1.2.4"  % Test,
+      "org.scalameta"  %%% "munit-scalacheck" % "1.2.0"  % Test,
     ),
   )
 
